@@ -1,0 +1,16 @@
+.statistique {
+  display: inline-block;
+  margin: 0 16px;
+  text-align: center;
+}
+
+.stat-chiffre {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: block;
+}
+
+.stat-libelle {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
