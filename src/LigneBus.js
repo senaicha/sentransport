@@ -1,21 +1,27 @@
 import './LigneBus.css';
 
-function LigneBus({ numero, depart, arrivee, arrets }) {
-  return (
-    <div className="ligne-bus">
-      <div className="ligne-numero">{numero}</div>
+function LigneBus({ numero, depart, arrivee, arrets, estSelectionnee, onClick }) {
 
-      <div className="ligne-info">
-        <span className="ligne-trajet">
-          {depart} → {arrivee}
-        </span>
+return (
+<div
+className={`ligne-bus ${estSelectionnee ? 'ligne-bus-active' : ''}`}
+onClick={onClick}
+>
 
-        <span className="ligne-arrets">
-          {arrets} arrêts
-        </span>
-      </div>
-    </div>
-  );
+<div className="ligne-numero">{numero}</div>
+
+<div className="ligne-info">
+
+<span className="ligne-trajet">
+{depart} → {arrivee}
+</span>
+
+<span className="ligne-arrets">{arrets} arrets</span>
+
+</div>
+
+</div>
+);
 }
 
 export default LigneBus;
