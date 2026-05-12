@@ -10,6 +10,7 @@ function App() {
 
 const [recherche, setRecherche] = useState("");
 const [ligneSelectionnee, setLigneSelectionnee] = useState(null);
+const [compteurRecherche, setCompteurRecherche] = useState(0);
 
 const lignes = [
 { id: 1, numero: "1", depart: " Parcelles Assainies ", arrivee: " Plateau ", arrets: 14, listeArrets: [" Parcelles U14", " Parcelles U10", " Camberene ", " Patte d'Oie", " Grand Dakar ", " Colobane ", " Ponty ", " Plateau "] },
@@ -43,7 +44,21 @@ return (
 
 <main className="contenu">
 
-<Recherche valeur={recherche} onChange={setRecherche} />
+<p>
+Vous avez effectué {compteurRecherche} recherche(s)
+</p>
+
+<Recherche
+valeur={recherche}
+onChange={(val) => {
+setRecherche(val);
+setCompteurRecherche(prev => prev + 1);
+}}
+/>
+
+<button onClick={() => setRecherche("")}>
+Effacer
+</button>
 
 <p className="resultat-recherche">
 {lignesFiltrees.length} ligne{lignesFiltrees.length > 1 ? 's' : ''} trouvee{lignesFiltrees.length > 1 ? 's' : ''}
@@ -57,6 +72,10 @@ estSelectionnee={ligneSelectionnee && ligneSelectionnee.id === ligne.id}
 onClick={() => handleClickLigne(ligne)}
 />
 ))}
+
+{lignesFiltrees.length === 0 && (
+<p>Aucune ligne trouvée</p>
+)}
 
 {ligneSelectionnee && (
 <DetailLigne ligne={ligneSelectionnee} />
